@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      FRED_API_KEY: 9257f2ba3e95b7f249f0c11cce2bb109
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,7 +22,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci --prefer-offline --no-audit
-      - run: node scripts/fetch-fred.cjs
+      - run: node scripts/fetch-fred.cjs || echo "FRED skip"
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
