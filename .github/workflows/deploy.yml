@@ -23,6 +23,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci --prefer-offline --no-audit
+      - run: node scripts/fetch-fred.cjs
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
